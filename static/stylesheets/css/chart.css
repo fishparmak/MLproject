@@ -1,0 +1,7 @@
+@import url("../src/all.css");
+@import url("../src/utilities.css");
+.main {
+    height: 600px;
+    text-align: center;
+    padding-top: 60px;
+}

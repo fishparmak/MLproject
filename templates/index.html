@@ -18,10 +18,56 @@
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="experience" placeholder="Experience" required="required" />
-        <input type="text" name="test_score" placeholder="Test Score" required="required" />
-		<input type="text" name="interview_score" placeholder="Interview Score" required="required" />
+      <span>Age</span>
+      <input type="text" name="age" placeholder="age" required="required" /><hr>
 
+      <span>Sex</span>
+      <select name="sex">
+        <option value="1">Male</option>
+        <option value="0">Female</option>
+      </select> </hr>
+
+      <span>Chest pain type</span>
+      <select name="cp">
+        <option value="0">typical angina</option>
+        <option value="1">atypical angina</option>
+        <option value="2">non-anginal pain</option>
+        <option value="3">asymptomatic</option>
+      </select> </hr>
+
+      <span>Resting blood pressure (mm Hg)</span>
+      <input type="text" name="trestbps" placeholder="125" required="required" /><hr>
+
+      <span>serum cholestoral in mg/dl</span>
+      <input type="text" name="chol" placeholder="230" required="required" /><hr>
+
+      <span>(fasting blood sugar > 120 mg/dl) </span>
+      <select name="fbs">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select> </hr>
+      
+      <span>resting electrocardiographic results</span>
+      <select name="restecg">
+        <option value="1">having ST-T wave abnormality </option>
+        <option value="0">normal</option>
+      </select> </hr>
+      
+      <span>maximum heart rate achieved</span>
+      <input type="text" name="thalach" placeholder="150" required="required" /><hr>
+
+      <span>exercise induced angina</span>
+      <select name="exang">
+          <option value="1">yes</option>
+          <option value="0">no</option>
+        </select> </hr>
+      
+        <span>ST depression induced by exercise relative to rest</span>
+        <input type="text" name="oldpeak" placeholder="0.62" required="required" /><hr>
+
+        
+        
+        
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
 

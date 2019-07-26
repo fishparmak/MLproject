@@ -1,0 +1,12 @@
+   .progress__runner {
+    transform: rotate(-90deg);
+    transform-origin: center;
+  }
+  .progress__runner_animated {
+    animation: progress-fill 2s reverse;
+  }
+  @keyframes progress-fill {
+    to { stroke-dasharray: 10 100; }
+  }
+  
+  

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/css/chart.css') }}">
+  
+</head>
+<body>
+    <h1 class="title">How much are you attractive?</h1>
+    <section class="main container d-flex f-direction-column a-items-center">
+        <div class="main__progress m-l-72-lg m-l-72-lx">Example</div> 
+        <div class="control control_main ">
+            <div class="control__item" style="display: none;">
+                <input type="text" class="control__input control__input_rounded" id="valueInput" placeholder="{{output}}" value="{{output}}">
+                <label class="control__label">Value</label>
+            </div>
+            <div class="control__item" style="display: none;">
+                <label class="switch control__input" for="animated">
+                    <input type="checkbox" id="animated"/>
+                    <div class="slider round"></div>
+                </label>
+                <label class="control__label">Animate</label>
+            </div>
+            <div class="control__item">
+                <label class="switch control__input" for="hidden">
+                    <input type="checkbox" id="hidden"/>
+                    <div class="slider round"></div>
+                </label>
+                <label class="control__label">Hide</label>
+            </div>
+        </div><hr>
+        <h2 class="title">Your level of attractiveness is {{ output }}%</h2>
+    </section>
+    
+     <hr>
+ <section class="login">
+      <h2>Form:</h2><br>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+
+      <input type="text" name="wage" placeholder="wage in dollars per hour" required="required" /> <br> <br> <br>
+
+      <input type="text" name="experience" placeholder="work experience in years" required="required" /> <br> <br> <br>
+
+      <span>Social activity</span>
+      <select name="union">
+          <option value="0">no union membership</option>
+        <option value="1">member of any union</option>
+      </select>  <br> <br> <br>
+
+      <span>Good health</span>
+      <select name="ghealth">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>  <br> <br> <br>
+
+      <span>Black</span>
+      <select name="black">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select>  <br> <br> <br>
+
+      <span>Gender</span>
+      <select name="female">
+        <option value="1">female</option>
+        <option value="0">male</option>
+      </select>  <br> <br> <br>
+
+      <span>Relationship status</span>
+      <select name="married">
+          <option value="0">single</option>
+          <option value="1">in relationships</option>
+      </select>  <br> <br> <br>
+
+      <span>Employee status</span>
+      <select name="service">
+          <option value="0">unemployed</option>
+          <option value="1">employed</option>
+      </select>  <br> <br> <br>
+
+      <input type="text" name="educ" placeholder="education in years" required="required" /> <br> <br> <br>
+      
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+ 
+
+ </section>
+
+ <script src="{{ url_for('static', filename='js/progress.js') }}"></script> 
+ <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

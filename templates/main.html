@@ -16,6 +16,9 @@
 </head>
 <body>
     <h1 class="title">How much are you attractive?</h1>
+    {% for pokemon in pokemons %}
+    <h2>{{ pokemon.name }}</h2>
+    {% endfor %}
     <section class="main container d-flex f-direction-column a-items-center">
         <div class="main__progress m-l-72-lg m-l-72-lx">Example</div> 
         <div class="control control_main ">

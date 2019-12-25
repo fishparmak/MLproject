@@ -8,74 +8,67 @@
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/css/style.css') }}">
   
 </head>
 
 <body>
  <div class="login">
-	<h1>Salary Analysis</h1>
+	<h1>Create new Project</h1>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-      <span>Age</span>
-      <input type="text" name="age" placeholder="age" required="required" /><hr>
+     <!-- Main Input -->
+    <form action="{{ url_for('createProject')}}"method="POST">
+      <span>Title</span>
+      <input type="text" name="title" placeholder="title" required="required" /><hr>
 
-      <span>Sex</span>
-      <select name="sex">
-        <option value="1">Male</option>
-        <option value="0">Female</option>
-      </select> </hr>
+      <span>info</span>
+      <input type="text" name="info" placeholder="info"/><hr>
 
-      <span>Chest pain type</span>
-      <select name="cp">
-        <option value="0">typical angina</option>
-        <option value="1">atypical angina</option>
-        <option value="2">non-anginal pain</option>
-        <option value="3">asymptomatic</option>
-      </select> </hr>
+      <span>Deadline</span>
+      <input type="date" name="deadline"> <hr>
 
-      <span>Resting blood pressure (mm Hg)</span>
-      <input type="text" name="trestbps" placeholder="125" required="required" /><hr>
-
-      <span>serum cholestoral in mg/dl</span>
-      <input type="text" name="chol" placeholder="230" required="required" /><hr>
-
-      <span>(fasting blood sugar > 120 mg/dl) </span>
-      <select name="fbs">
-        <option value="1">Yes</option>
-        <option value="0">No</option>
-      </select> </hr>
+       <span>place</span>
+      <input type="text" name="place" placeholder="place" /><hr>
       
-      <span>resting electrocardiographic results</span>
-      <select name="restecg">
-        <option value="1">having ST-T wave abnormality </option>
-        <option value="0">normal</option>
-      </select> </hr>
-      
-      <span>maximum heart rate achieved</span>
-      <input type="text" name="thalach" placeholder="150" required="required" /><hr>
-
-      <span>exercise induced angina</span>
-      <select name="exang">
-          <option value="1">yes</option>
-          <option value="0">no</option>
-        </select> </hr>
-      
-        <span>ST depression induced by exercise relative to rest</span>
-        <input type="text" name="oldpeak" placeholder="0.62" required="required" /><hr>
-
-        
-        
-        
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
 
    <br>
    <br>
-   {{ prediction_text }}
+   <form action="{{ url_for('home')}}"method="POST">
+    <span>Id</span>
+    <input type="text" name="id" placeholder="id" required="required" /><hr>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Filter by user</button>
+  </form>
+   <br>
+   <b>Your Projects:</b><br><br>
+   <table>
+    {% for project in projects %}
+      <div style="border:1px solid white;">
+        title = {{ project.title }} <br>
+        info = {{ project.info }}<br>
+        deadline = {{ project.deadline }} <br>
+        created date = {{ project.created_date }} <br>
+        location = {{ project.place }}<br><br><br>
+        <hr>
+        <span style="text-decoration:underline; color: plum;">Actions for this project:</span> <hr> <span style="background-color:indigo;">{% if project.actions is not defined %} No actions for project '{{project.title}} yet.'{% endif %} </span>
+        {% for action in project.actions %}
+          
+          <div style="background-color:indigo;">
+          title = {{ action.title }} <br>
+          info = {{ action.info }}<br>
+          deadline = {{ action.deadline }} <br>
+          created date = {{ action.created_date }} <br>
+          location = {{ action.place }}<br><br> 
+          </div>
+    
+        {% endfor %}
+      </div>
+        <br><br>
+    {% endfor %}
+  </table>
 
- </div>
+ </div>div>
 
 
 </body>

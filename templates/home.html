@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/css/style.css') }}">
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Create new Project</h1>
+
+     <!-- Main Input -->
+    <a href=""></a>
+   <br>
+   <br>
+   <b>Your Projects:</b><br><br>
+    {% for project in projects %}
+        title = {{ project.title }} <br>
+        info = {{ project.info }}<br>
+        deadline = {{ project.deadline }} <br>
+        created date = {{ project.created_date }} <br>
+        location = {{ project.place }}<br><br>
+    {% endfor %}
+
+ </div>
+
+
+</body>
+</html>

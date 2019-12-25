@@ -5,7 +5,7 @@ var valueInput = document.getElementById("valueInput"); // input элемент,
 var hidden = document.getElementById("hidden"); // checkbox для скрытия блока
 var animated = document.getElementById("animated"); // checkbox для создания анимации
 var control = document.getElementsByClassName("control")[0]; // панель управления, на которую повесим eventListener
-p.setValue(valueInput.value*100);
+p.setValue(valueInput.value);
 animated.checked = true;
 // p.checked = true;
 p.setMod('animated', 'yes')

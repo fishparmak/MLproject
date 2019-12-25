@@ -45,17 +45,17 @@
    <table>
     {% for project in projects %}
       <div style="border:1px solid white;">
-        title = {{ project.title }} <br>
+        <h4 style="font-style: italic;">"{{ project.title }}"-Project</h4>
         info = {{ project.info }}<br>
         deadline = {{ project.deadline }} <br>
         created date = {{ project.created_date }} <br>
         location = {{ project.place }}<br><br><br>
         <hr>
-        <span style="text-decoration:underline; color: plum;">Actions for this project:</span> <hr> <span style="background-color:indigo;">{% if project.actions is not defined %} No actions for project '{{project.title}} yet.'{% endif %} </span>
+        <span style="text-decoration:underline; color: plum;">Actions for this project:</span>  <span style="background-color:indigo;">{% if project.actions is not defined %} No actions for project '{{project.title}} yet.'{% endif %} </span>
         {% for action in project.actions %}
           
           <div style="background-color:indigo;">
-          title = {{ action.title }} <br>
+            <h4 style="font-style: italic;">"{{ action.title }}"-action</h4>
           info = {{ action.info }}<br>
           deadline = {{ action.deadline }} <br>
           created date = {{ action.created_date }} <br>

@@ -3,6 +3,7 @@ from operator import itemgetter
 from flask import Flask, request, jsonify, render_template, redirect
 import pickle
 from flask_pymongo import PyMongo
+import pymongo
 from pymongo import MongoClient
 from datetime import datetime
 
@@ -11,7 +12,9 @@ app.config.update(dict(SECRET_KEY='yoursecretkey'))
 # db connection
 app.config["MONGO_URI"] = "mongodb://localhost:27017/project"
 mongo = PyMongo(app)
+mongo.db.gtd.create_index([('user_id', pymongo.TEXT)], name='user_index', default_language='english')
 user_id = 3
+
 
 @app.route('/projects', methods = ['POST']) 
 def createProject():
@@ -79,14 +82,32 @@ def predict():
 #     output = prediction[0]
 #     return jsonify(output)
 
+@app.route('/stats', methods = ['GET', 'POST'])
+def stats():
+    
+    amount_large_projects = mongo.db.gtd.count({ '$where': "this.warehouse.projects.length > 4" })/500*100
+    users = mongo.db.gtd.aggregate([
+                    {'$unwind': '$warehouse.projects'},
+                    {'$unwind': '$warehouse.projects.actions'},
+                    {'$group': 
+                        { 
+                            '_id': '$user_id',
+                            'count': { '$sum': 1 } 
+                         } 
+                    },
+                    {'$sort': { 'count': -1 } },
+                    ])
+    return render_template('stats.html',users = users, amount = amount_large_projects)
+
 @app.route('/', methods = ['GET', 'POST'])
 def home():
     # read all data
     user_id = 3
     form = request.form
-    if int(form.get('id'))>0:
-            user_id = int(form['id'])
-            print(f'USSEEER ID: {int(form["id"])}')
+    if str(form.get('id')).isdigit():
+        if int(form.get('id'))>0:
+                user_id = int(form['id'])
+                print(f'USSEEER ID: {int(form["id"])}')
 
     docs = mongo.db.gtd.find({'user_id':user_id})[0]['warehouse']['projects']
     projects = []

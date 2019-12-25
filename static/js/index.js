@@ -1,4 +1,4 @@
-p = Progress(value=10); // создаем сущность объекта Progress (default in 'Normal' state)
+p = Progress(value=50); // создаем сущность объекта Progress (default in 'Normal' state)
 p.setNode(document.getElementsByClassName('main__progress')); // обознаечем нод, внутри которого расположим диаграмму
  // ставим значение, которое собираемся отобразить
 var valueInput = document.getElementById("valueInput"); // input элемент, принимающий значения

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/src/all.css') }}">
+  
+</head>
+
+<body>
+  <h2 class="title">General amount of large projects is {{ amount }}%</h2>
+  <section class="main container d-flex f-direction-column a-items-center">
+    <div class="main__progress m-l-72-lg m-l-72-lx">Example</div> 
+    <div class="control control_main ">
+        <!-- <div class="control__item" style="display: none;">
+            <input type="text" class="control__input control__input_rounded" id="valueInput" placeholder="{{output}}" value="{{output}}">
+            <label class="control__label">Value</label>
+        </div> -->
+        <div class="control__item" style="">
+            <label class="switch control__input" for="animated">
+                <input type="checkbox" id="animated" />
+                <div class="slider round"></div>
+            </label>
+            <label class="control__label">Animate</label>
+        </div>
+        <div class="control__item">
+            <label class="switch control__input" for="hidden">
+                <input type="checkbox" id="hidden"/>
+                <div class="slider round"></div>
+            </label>
+            <label class="control__label">Hide</label>
+        </div>
+    </div><hr>
+    
+</section>
+ <div class="login">
+	<h1 style="font-weight: bold; font-size: 26px;">Statistics: number of actions by users</h1> 
+  <input type="text" style="visibility:hidden" class="control__input control__input_rounded" id="valueInput" placeholder="{{amount}}" value="{{amount}}">
+  <!-- <hr> -->
+  <!-- <span id="valueInput">10</span> -->
+  <br>
+  {% for user in users %}
+  user_id: {{user._id}}<br>general number of actions from all projects: {{user.count}}
+  <hr>
+  {% endfor %}
+
+
+   <br>
+   <b>Your Projects:</b><br><br>
+   <table>
+    {% for project in projects %}
+      <div style="border:1px solid white;">
+        <h4 style="font-style: italic;">"{{ project.title }}"-Project</h4>
+        info = {{ project.info }}<br>
+        deadline = {{ project.deadline }} <br>
+        created date = {{ project.created_date }} <br>
+        location = {{ project.place }}<br><br><br>
+        <hr>
+        <span style="text-decoration:underline; color: plum;">Actions for this project:</span>  <span style="background-color:indigo;">{% if project.actions is not defined %} No actions for project '{{project.title}} yet.'{% endif %} </span>
+        {% for action in project.actions %}
+          
+          <div style="background-color:indigo;">
+            <h4 style="font-style: italic;">"{{ action.title }}"-action</h4>
+          info = {{ action.info }}<br>
+          deadline = {{ action.deadline }} <br>
+          created date = {{ action.created_date }} <br>
+          location = {{ action.place }}<br><br> 
+          </div>
+    
+        {% endfor %}
+      </div>
+        <br><br>
+    {% endfor %}
+  </table>
+
+ </div>
+
+ <script src="{{ url_for('static', filename='js/progress.js') }}"></script> 
+ <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
